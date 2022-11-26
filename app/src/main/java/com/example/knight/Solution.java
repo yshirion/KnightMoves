@@ -8,8 +8,8 @@ import java.util.PriorityQueue;
 public class Solution extends AppCompatActivity{
 
     final short MIN = 0;
-    final short MAX; // for different size of board.
-    boolean[][] map; // mapping of the board to mark the visited nodes, to avoid try them again.
+    final short MAX; // For different size of board.
+    boolean[][] map; // Mapping the board to mark the visited nodes, to avoid try them again.
     Move tmp = new Move();
 
     //This class hold the data for each 'node'.
@@ -70,12 +70,12 @@ public class Solution extends AppCompatActivity{
         return tmp;
     }
 
-    //BFS search, to find the fastest way, that for sure find the fastest, because this the property of BFS search.
+    //BFS search, to find the fastest way, that for sure find the fastest, because this the attribute of BFS search.
     private boolean search(){
         if (map[tmp.i][tmp.j]) return false; //This node is already watched.
         map[tmp.i][tmp.j] = true; //mark this position in map that watched.
 
-        //Try to improve the performance by order the nodes by the close to end node by use PriorityQueue.
+        //Try to improve the performance by order the nodes according to proximity to end node, by use PriorityQueue.
         PriorityQueue<Move> tmpList = new PriorityQueue<>();
         // All sons of this node.
         tmpList.add(new Move(tmp.i-2,tmp.j+1,tmp));
@@ -89,8 +89,8 @@ public class Solution extends AppCompatActivity{
 
         while (!tmpList.isEmpty()){
             Move a = tmpList.poll();
-            if (a.i > MAX || a.i < MIN || a.j > MAX || a.j < MIN) continue; //out of the range - not enter to explore list.
-            if (a.i == end.i && a.j == end.j) return true; //This node is the target node - check before enter it to 'explore' - BFS attribute.
+            if (a.i > MAX || a.i < MIN || a.j > MAX || a.j < MIN) continue; //out of the range - not entering to explore list.
+            if (a.i == end.i && a.j == end.j) return true; //This node is the target node - check it before entering to 'explore' - BFS attribute.
             explore.add(a);
          }
 

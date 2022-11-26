@@ -12,14 +12,14 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    final short SIZE = 8; //For change the size of board (for not 'real' chess board).
+    final short SIZE = 8; //For change the size of board (for not 'real' chess board) in easy.
     double relative = SIZE/8;
     double x = 1/relative;
     GridLayout chess;
     Button[][] arr;
     Button refresh;
-    boolean isDest = false; //Realize which press now - first for start either the end.
-    boolean isEven = true; //For paint the board - like chess board.
+    boolean isDest = false; // Recognize which press now - first for start either the end.
+    boolean isEven = true; // For paint the board - like chess board.
     TextView tv;
     String text;
     int[] start;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv.setTextColor(Color.GRAY);
         arr = new Button[SIZE][SIZE];
     }
-    //Define the 'again' button' to reset the board for other game.
+    //Define the 'again' button to reset the board for other game.
     private void initializeAgain() {
         refresh = findViewById(R.id.button);
         refresh.setOnClickListener(v -> {
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 arr[i][j].setText(""+(i)+","+(j));
                 arr[i][j].setTextSize((int) (10*x));
                 arr[i][j].setTextColor(Color.WHITE);
-                arr[i][j].setTag(new int[]{i,j});//Data in button for connection of button and its position in array.
+                arr[i][j].setTag(new int[]{i,j});// Add data in button for connection of button and its position in array.
             }
             isEven = !isEven;
         }
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (isDest)
             b.setBackgroundColor(Color.BLUE);
         else {
-            //For board uses the background for change the default background of every button.
+            //For board - use the background for change the default background of every button.
             if (isEven) b.setBackgroundResource(R.drawable.white);
             else b.setBackgroundResource(R.drawable.black);
             isEven = !isEven;
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setHead(true);
     }
 
-    //Second click - define the destination, lock the board to more clicks, and start the calculation.
+    //Second click - define the destination, lock the board for more clicks, and start the calculation.
     private void endClick(Button b) {
         int[] position = (int[]) b.getTag();
         b.setBackgroundColor(Color.RED);
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         paintPath(move);
     }
 
-    //Text box for instruction and describe the situation.
+    //Text box for instructions, and describe the situation.
     private void setHead(boolean isStart){
         if (isStart){
             tv.setText("Now choose your destination.");
